@@ -1,0 +1,59 @@
+<?php
+   $name = filter_input(INPUT_POST, 'name');
+   $email = filter_input(INPUT_POST, 'email');
+   $subject = filter_input(INPUT_POST, 'subject');
+   $message = filter_input(INPUT_POST, 'message');
+    if (!empty($name)){
+    
+    }else{
+        echo "Name require";
+        die();
+    }
+    if (!empty($email)){
+        echo "email required";
+        die();
+    }
+    if (!empty($subject)){
+        echo "subject required";
+        die();
+    }
+    if (!empty($message)){
+        echo "message required";
+        die();
+    }
+   $host ="localhost";
+   $dbusername = "root";
+   $dbpassword = "";
+   $dbname = "staina_tvclub";
+
+   // Database connection
+   $conn = new mysqli ($host, $dbusername, $dbpassword, $dbname,);
+
+   if (mysqli_connect_error()){
+       die('Connect Error('.mysql_connect_error() .') '
+       .mysql_connect_error());
+   }
+   else{
+       $sql = "INSERT  INTO contact (name , email, subject, message)
+     VALUES ('$name', '$email', '$subject', '$message')";
+       if ($conn->query($sql)){
+           echo "Contact Store Successfully";
+       }
+       else {
+           echo "Error: ". $sql ."<br>". $conn->error;
+       }
+       $conn->close();
+   }
+?>
+
+
+
+
+
+
+
+ 
+  
+
+
+ 
